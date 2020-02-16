@@ -1,0 +1,16 @@
+.Message {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  padding: 10px;
+  width: 20%;
+  background-color: red;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.Message__text {
+  color: white;
+  font-size: 16;
+  font-weight: 600;
+}
