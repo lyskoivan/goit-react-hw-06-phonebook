@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { CSSTransition } from 'react-transition-group';
 
 import PropTypes from 'prop-types';
@@ -12,7 +13,9 @@ import Message from '../Message/Message';
 export default class FormContacts extends Component {
   static propTypes = {
     addNewContact: PropTypes.func.isRequired,
-    contacts: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape(FormContacts.propTypes).isRequired,
+    ).isRequired,
   };
 
   state = {
@@ -33,6 +36,18 @@ export default class FormContacts extends Component {
     this.setState({ name: '', number: '' });
   };
 
+  errorMessage = () => {
+    this.setState(
+      prevState => ({
+        showError: !prevState.showError,
+      }),
+      () =>
+        setTimeout(() => {
+          this.setState(prevState => ({ showError: !prevState.showError }));
+        }, 2000),
+    );
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
@@ -44,15 +59,7 @@ export default class FormContacts extends Component {
     );
 
     if (sameContact) {
-      this.setState(
-        prevState => ({
-          showError: !prevState.showError,
-        }),
-        () =>
-          setTimeout(() => {
-            this.setState(prevState => ({ showError: !prevState.showError }));
-          }, 2000),
-      );
+      this.errorMessage();
 
       this.reset();
       return;
@@ -65,6 +72,7 @@ export default class FormContacts extends Component {
     };
 
     this.props.addNewContact(newContact);
+
     this.reset();
   };
 
