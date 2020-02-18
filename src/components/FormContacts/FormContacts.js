@@ -25,11 +25,7 @@ export default class FormContacts extends Component {
   };
 
   handleChangeName = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  handleChangeNumber = e => {
-    this.setState({ number: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   reset = () => {
@@ -51,28 +47,22 @@ export default class FormContacts extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-
     if (!name || !number) return;
-
     const sameContact = this.props.contacts.find(
       contact => contact.name === name,
     );
-
     if (sameContact) {
       this.errorMessage();
 
       this.reset();
       return;
     }
-
     const newContact = {
       name,
       number,
       id: shortid.generate(),
     };
-
     this.props.addNewContact(newContact);
-
     this.reset();
   };
 
@@ -98,6 +88,7 @@ export default class FormContacts extends Component {
             <input
               type="text"
               value={name}
+              name="name"
               onChange={this.handleChangeName}
               className={styles.contacts__input}
             />
@@ -108,9 +99,10 @@ export default class FormContacts extends Component {
           >
             Number
             <input
-              type="tel"
+              type="number"
+              name="number"
               value={number}
-              onChange={this.handleChangeNumber}
+              onChange={this.handleChangeName}
               className={styles.contacts__input}
             />
           </label>

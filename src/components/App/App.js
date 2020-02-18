@@ -17,25 +17,17 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    try {
-      const { saveContacts } = this.props;
-      const localContacts = JSON.parse(localStorage.getItem('contacts'));
-      if (localContacts) {
-        saveContacts(localContacts);
-      }
-    } catch (err) {
-      console.log(err);
+    const { saveContacts } = this.props;
+    const localContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (localContacts) {
+      saveContacts(localContacts);
     }
   }
 
   componentDidUpdate(prevProps) {
-    try {
-      const { contacts } = this.props;
-      if (prevProps.contacts !== contacts) {
-        localStorage.setItem('contacts', JSON.stringify(contacts));
-      }
-    } catch (err) {
-      console.log(err);
+    const { contacts } = this.props;
+    if (prevProps.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }
 

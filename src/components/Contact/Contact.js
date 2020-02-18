@@ -6,7 +6,6 @@ import styles from './Contact.module.css';
 const Contact = ({ name, number, handleDeleteContact }) => (
   <>
     <p className={styles.item__name}>{name}</p>
-
     <div className={styles.item__right}>
       <p>{number}</p>
       <button
