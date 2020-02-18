@@ -15,6 +15,8 @@ const filterReducer = createReducer('', {
   [Actions.filterUpdate]: (state, action) => action.payload.value,
 });
 
+/* Without redux toolkit */
+
 // const contactsReducer = (state = [], action) => {
 //   switch (action.type) {
 //     case types.ADD_CONTACT:

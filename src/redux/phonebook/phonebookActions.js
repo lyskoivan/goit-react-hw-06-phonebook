@@ -18,6 +18,8 @@ export const filterUpdate = createAction(types.FILTER_UPDATE, value => ({
   payload: { value },
 }));
 
+/* Without redux toolkit */
+
 // export const addContact = contact => ({
 //   type: types.ADD_CONTACT,
 //   payload: { contact },
